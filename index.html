@@ -3,7 +3,7 @@
 <head>
   <title>wadup world</title>
   <!-- <script type="text/javascript" src="http://icecomm.cloudapp.net/icecomm-0.0.2.js"></script> -->
-  <script type="text/javascript" src="http://localhost:3000/icecomm-0.0.2.js"></script>
+  <script type="text/javascript" src="http://localhost:8000/icecomm-0.0.2.js"></script>
 
 </head>
 <body>
@@ -14,9 +14,14 @@
 
     var comm = new IceComm('$2a$10$KqS6dKC1ic90tZ6Y4yepQ.soiOkH7Az7rS9umXSLckahsrzfDDK5e');
 
+    var room = window.location.pathname;
+
     // var comm = new IceComm('wrong api');
 
-    comm.on('room', function(options) {
+    comm.connect(room);
+
+    comm.on(room, function(options) {
+      console.log('room');
       createRemoteVideo(options.stream);
     });
 
@@ -24,15 +29,24 @@
       localVideo.src = options.stream;
     });
 
-    comm.ready(function(data) {
-      for (var key in data.remoteStreams) {
-        createRemoteVideo(URL.createObjectURL(data.remoteStreams[key]));
-      }
+    // comm.ready(function(data) {
+    //   console.log('ready');
+    //   // comm.emit('room', {});
+
+    //   for (var key in data.remoteStreams) {
+    //     createRemoteVideo(data.remoteStreams[key], key);
+    //   }
+    // });
+
+    comm.leave(function(options) {
+      console.log('callerID', options.callerID);
+      document.getElementById(options.callerID).remove();
     });
 
-    function createRemoteVideo(stream) {
+    function createRemoteVideo(stream, key) {
       var remoteVideo = document.createElement('video');
       remoteVideo.src = stream;
+      remoteVideo.id = key;
       remoteVideo.autoplay = true;
       document.body.appendChild(remoteVideo);
     }
