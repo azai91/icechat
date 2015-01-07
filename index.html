@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>wadup world</title>
-  <!-- <script type="text/javascript" src="http://icecomm.cloudapp.net/icecomm-0.0.2.js"></script> -->
-  <script type="text/javascript" src="http://localhost:8000/icecomm-0.0.2.js"></script>
+  <script type="text/javascript" src="http://icecomm.cloudapp.net/icecomm-0.0.2.js"></script>
+  <!-- <script type="text/javascript" src="http://localhost:8000/icecomm-0.0.2.js"></script> -->
 
 </head>
 <body>
@@ -16,30 +16,17 @@
 
     var room = window.location.pathname;
 
-    // var comm = new IceComm('wrong api');
-
     comm.connect(room);
 
     comm.on(room, function(options) {
-      console.log('room');
-      createRemoteVideo(options.stream);
+      createRemoteVideo(options.stream, options.callerID);
     });
 
     comm.local(function(options) {
       localVideo.src = options.stream;
     });
 
-    // comm.ready(function(data) {
-    //   console.log('ready');
-    //   // comm.emit('room', {});
-
-    //   for (var key in data.remoteStreams) {
-    //     createRemoteVideo(data.remoteStreams[key], key);
-    //   }
-    // });
-
     comm.leave(function(options) {
-      console.log('callerID', options.callerID);
       document.getElementById(options.callerID).remove();
     });
 
