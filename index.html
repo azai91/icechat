@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>wadup world</title>
+  <!-- <script type="text/javascript" src="http://icecomm.cloudapp.net/icecomm-0.0.2.js"></script> -->
+  <script type="text/javascript" src="http://localhost:3000/icecomm-0.0.2.js"></script>
+
+</head>
+<body>
+  <video id="localVideo" autoplay></video>
+</body>
+  <script>
+    var localVideo = document.getElementById('localVideo');
+
+    var comm = new IceComm('$2a$10$KqS6dKC1ic90tZ6Y4yepQ.soiOkH7Az7rS9umXSLckahsrzfDDK5e');
+
+    // var comm = new IceComm('wrong api');
+
+    comm.on('room', function(options) {
+      createRemoteVideo(options.stream);
+    });
+
+    comm.local(function(options) {
+      localVideo.src = options.stream;
+    });
+
+    comm.ready(function(data) {
+      for (var key in data.remoteStreams) {
+        createRemoteVideo(URL.createObjectURL(data.remoteStreams[key]));
+      }
+    });
+
+    function createRemoteVideo(stream) {
+      var remoteVideo = document.createElement('video');
+      remoteVideo.src = stream;
+      remoteVideo.autoplay = true;
+      document.body.appendChild(remoteVideo);
+    }
+  </script>
+</html>
