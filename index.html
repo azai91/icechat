@@ -2,31 +2,29 @@
 <html>
 <head>
   <title>wadup world</title>
-  <script type="text/javascript" src="http://icecomm.cloudapp.net/icecomm-0.0.2.js"></script>
-  <!-- <script type="text/javascript" src="http://localhost:8000/icecomm-0.0.2.js"></script> -->
+  <script type="text/javascript" src="http://icecomm.cloudapp.net/icecomm-0.0.3.js"></script>
+  <!-- <script type="text/javascript" src="http://localhost:8000/icecomm-0.0.3.js"></script> -->
 
 </head>
 <body>
   <video id="localVideo" autoplay></video>
 </body>
   <script>
-    var localVideo = document.getElementById('localVideo');
-
     var comm = new IceComm('$2a$10$KqS6dKC1ic90tZ6Y4yepQ.soiOkH7Az7rS9umXSLckahsrzfDDK5e');
 
     var room = window.location.pathname;
 
     comm.connect(room);
 
-    comm.on(room, function(options) {
+    comm.on('connected', function(options) {
       createRemoteVideo(options.stream, options.callerID);
     });
 
-    comm.local(function(options) {
+    comm.on('local', function(options) {
       localVideo.src = options.stream;
     });
 
-    comm.leave(function(options) {
+    comm.on('disconnect', function(options) {
       document.getElementById(options.callerID).remove();
     });
 
