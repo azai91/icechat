@@ -2,22 +2,22 @@
 <html>
 <head>
   <title>wadup world</title>
-  <script type="text/javascript" src="http://icecomm.cloudapp.net/icecomm-0.0.3.js"></script>
-  <!-- <script type="text/javascript" src="http://localhost:8000/icecomm-0.0.3.js"></script> -->
+  <script type="text/javascript" src="http://icecomm1.cloudapp.net/icecomm-0.0.9.js"></script>
+  <!-- <script type="text/javascript" src="http://localhost:8000/icecomm-0.0.9.js"></script> -->
+  <!-- <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script> -->
+  <!-- <button>Close</button> -->
 
 </head>
 <body>
   <video id="localVideo" autoplay></video>
 </body>
   <script>
-    var comm = new IceComm('$2a$10$KqS6dKC1ic90tZ6Y4yepQ.soiOkH7Az7rS9umXSLckahsrzfDDK5e');
+    var comm = new IceComm('vUtPj3U/Os5WN4j/a6sLQ8Dsu4Id9Rg0GNUkkJBxJXPMP3a');
 
-    var room = window.location.pathname;
-
-    comm.connect(room);
+    comm.connect('room', {audio: false});
 
     comm.on('connected', function(options) {
-      createRemoteVideo(options.stream, options.callerID);
+      document.body.appendChild(options.video);
     });
 
     comm.on('local', function(options) {
@@ -28,12 +28,5 @@
       document.getElementById(options.callerID).remove();
     });
 
-    function createRemoteVideo(stream, key) {
-      var remoteVideo = document.createElement('video');
-      remoteVideo.src = stream;
-      remoteVideo.id = key;
-      remoteVideo.autoplay = true;
-      document.body.appendChild(remoteVideo);
-    }
   </script>
 </html>
