@@ -14,7 +14,6 @@
   <script>
     var comm = new Icecomm('4c/fRzyHOY0YgWXwkNuTsnCS0ZzKtmrz0cBdm3qe93gIFrAG');
 
-    comm.connect('room');
 
     comm.on('connected', function(options) {
       document.getElementsByClassName('colorful box')[0].appendChild(options.video)
