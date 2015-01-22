@@ -1,0 +1,25 @@
+body {
+  width: 100%;
+  height: auto;
+  bottom: 0px;
+  top: 0px;
+  left: 0;
+  position: absolute;
+  margin: 0px;
+}
+
+.box {
+  height: 100%;
+  width: 100%;
+}
+
+.colorful {
+  background: url('skype-bg.png');
+  /*background: -webkit-radial-gradient(0% 100%, rgba(118, 72, 160, 0.701961) 0px, rgba(118, 72, 160, 0) 60%), -webkit-radial-gradient(90% 100%, rgb(82, 63, 140) 0px, rgba(82, 63, 140, 0) 40%), -webkit-radial-gradient(50% 0%, rgba(84, 90, 182, 0.6) 0px, rgba(84, 90, 182, 0) 75%), -webkit-radial-gradient(100% 0%, rgb(121, 74, 162) 0px, rgba(121, 74, 162, 0) 57%);*/
+  background-color: #3b2f63; 
+}
+
+video {
+  padding: 20px;
+
+}
