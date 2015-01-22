@@ -2,11 +2,8 @@
 <html>
 <head>
   <title>wadup world</title>
-  <script type="text/javascript" src="bower_components/icecomm/icecomm.js"></script>
+  <script type="text/javascript" src="http://cdn.icecomm.io/icecomm.js"></script>
   <link rel="stylesheet" href="style.css">
-  <!-- <script type="text/javascript" src="http://localhost:8000/icecomm.js"></script> -->
-  <!-- <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script> -->
-  <!-- <button>Close</button> -->
 
 </head>
 <body>
@@ -15,13 +12,12 @@
   </div>
 </body>
   <script>
-    var comm = new Icecomm('vUtPj3U/Os5WN4j/a6sLQ8Dsu4Id9Rg0GNUkkJBxJXPMP3a', {debug: true});
+    var comm = new Icecomm('4c/fRzyHOY0YgWXwkNuTsnCS0ZzKtmrz0cBdm3qe93gIFrAG');
 
-    comm.connect('room', {audio: false});
+    comm.connect('room');
 
     comm.on('connected', function(options) {
       document.getElementsByClassName('colorful box')[0].appendChild(options.video)
-      // document.body.appendChild(options.video);
     });
 
     comm.on('local', function(options) {

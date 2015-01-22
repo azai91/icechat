@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.10.7"
+  },
+  "devDependencies": {
+    "flightplan": "^0.5.6"
   }
 }
