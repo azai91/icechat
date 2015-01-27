@@ -3,8 +3,8 @@
 <head>
   <title>wadup world</title>
   <link rel="stylesheet" href="style.css">
-  <script type="text/javascript" src="http://icecomm1.cloudapp.net/icecomm.js"></script>
-
+  <!-- <script type="text/javascript" src="http://localhost:8000/icecomm.js"></script> -->
+  <script type="text/javascript" src="http://icecomm-dev.elasticbeanstalk.com/icecomm.js"></script>
 </head>
 <body>
   <div class="colorful box">
@@ -12,8 +12,7 @@
   </div>
 </body>
   <script>
-    var comm = new Icecomm('4c/fRzyHOY0YgWXwkNuTsnCS0ZzKtmrz0cBdm3qe93gIFrAG');
-
+    var comm = new Icecomm('Qwy5VJ6qcXGm2DDNe9uVrkI5vKh/q1NeLbQqmA7sZ9ZxLWoPC');
     comm.connect('room');
 
     comm.on('connected', function(options) {
