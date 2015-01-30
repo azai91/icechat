@@ -1,15 +1,15 @@
 var plan = require('flightplan');
 
-var appName = 'skypechat';
+var appName = 'icechat';
 var username = 'azai91';
-var startFile = 'server/server.js';
+var startFile = 'server.js';
 
 var tmpDir = appName+'-' + new Date().getTime();
 
 // configuration
 plan.target('staging', [
   {
-    host: 'skypechat.cloudapp.net',
+    host: 'icechat.cloudapp.net',
     username: username,
     agent: process.env.SSH_AUTH_SOCK
   }
@@ -17,7 +17,7 @@ plan.target('staging', [
 
 plan.target('production', [
   {
-    host: 'skypechat.cloudapp.net',
+    host: 'icechat.cloudapp.net',
     username: username,
     agent: process.env.SSH_AUTH_SOCK
   },
@@ -50,5 +50,5 @@ plan.remote(function(remote) {
 
   remote.log('Reload application');
   remote.sudo('ln -snf ~/' + tmpDir + ' ~/'+appName, {user: username});
-  remote.exec('sudo restart skypechat');
+  remote.exec('sudo restart ' + appName);
 });
